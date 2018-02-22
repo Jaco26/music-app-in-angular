@@ -33,9 +33,10 @@ function musicCtl($http){
             url: '/songs'
         }).then(function(response){
             self.songsArray = response.data;
-            // for(let song of self.songsArray){
-            //     song.beingEdited = false;
-            // }
+            for(let song of self.songsArray){
+                song.published = formatDate(song.published);
+                song.beingEdited = false;
+            }
         }).catch(function(error) {
             console.log('ERROR IN GET /songs', error);
         }); // END $http
@@ -47,3 +48,13 @@ function musicCtl($http){
 
 
 }; // END musicCtl()
+
+
+function formatDate(isoDateStr) {
+    let result = ''
+    if (isoDateStr != null) {
+        let date = new Date(isoDateStr);
+        result = date.toLocaleDateString();
+    }
+    return result;
+} // END formatDate
