@@ -21,42 +21,43 @@
 
   <h1>Songs!</h1>
   <main ng-controller="musicController as vm"> <!-- "vm" means "view model"...I think -->
+      <div class="container">
+        <input type="text" ng-model="test">
+        <p> {{test}} </p>
+        <section>
+          <h2>Add a song</h2>
+          <form>
+            <input type="text" id="in-track" placeholder="Track Name" ng-model="vm.newSong.track">
+            <input type="text" id="in-artist" placeholder="Artist" ng-model="vm.newSong.artist">
+            <input type="date" id="in-date" ng-model="vm.newSong.published">
+            <input type="number" id="in-rank" min=1 max=999 ng-model="vm.newSong.rank">
+            <button ng-click="vm.addSong(vm.newSong)">Add</button>
+          </form>
+        </section>
+        <section>
+          <h2>All the songs</h2>
 
-    <input type="text" ng-model="test">
-    <p> {{test}} </p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Track</th>
+                <th>Artist</th>
+                <th>Published</th>
+                <th>Rank</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="song in vm.songsArray">
+              <td> {{song.track}} </td>
+              <td> {{song.artist}} </td>
+              <td> {{song.published}} </td>
+              <td> {{song.rank}} </td>
+            </tbody>
+          </table>
 
-    <section>
-      <h2>Add a song</h2>
-      <form>
-        <input type="text" id="in-track" placeholder="Track Name" ng-model="vm.newSong.track" >
-        <input type="text" id="in-artist" placeholder="Artist" ng-model="vm.newSong.artist">
-        <input type="date" id="in-date" ng-model="vm.newSong.published">
-        <input type="number" id="in-rank" min=1 max=999 ng-model="vm.newSong.rank">
-        <button ng-click="vm.addSong(vm.newSong)">Add</button>
-      </form>
-    </section>
-    <section>
-      <h2>All the songs</h2>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Track</th>
-            <th>Artist</th>
-            <th>Published</th>
-            <th>Rank</th>
-          </tr>
-        </thead>
-        <tbody ng-repeat="song in vm.songsArray">
-          <td> {{song.track}} </td>
-          <td> {{song.artist}} </td>
-          <td> {{song.published}} </td>
-          <td> {{song.rank}} </td>
-        </tbody>
-      </table>
-      
-    </section>
-
+        </section>
+      </div>
+      <!-- END .container -->
+   
   </main>
   <!-- END musicController -->
    
