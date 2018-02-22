@@ -4,6 +4,7 @@ const app = express();
 // Setup body parser to handle POST body
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
 
 // Setup songs router
 const songRouter = require('./routers/songs-router');
