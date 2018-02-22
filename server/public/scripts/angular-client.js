@@ -42,6 +42,18 @@ function musicCtl($http){
         }); // END $http
     }; // END self.getSongs
 
+    self.deleteSong = function(song) {
+        let id = song.id;
+        $http({
+            method: 'DELETE',
+            url: `songs/${id}`,
+        }).then(function(response) {
+            self.getSongs();
+        }).catch(function(error) {
+            console.log('Error in self.deleteSong', error);
+        }); // END $http
+    }; // END self.deleteSong
+
 
     // ON PAGE LOAD...
     self.getSongs();

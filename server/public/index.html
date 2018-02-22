@@ -51,6 +51,7 @@
               <td> {{song.artist}} </td>
               <td> {{song.published}} </td>
               <td> {{song.rank}} </td>
+              <td> <button class="btn btn-danger" ng-model="song" ng-click="vm.deleteSong(song)">Delete</button></td>
             </tbody>
           </table>
 
