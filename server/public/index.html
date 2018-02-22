@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Songs</title>
+  <script src="vendors/jquery.js"></script>
+  <script src="scripts/client.js"></script>
+</head>
+<body>
+  <h1>Songs!</h1>
+  <section>
+    <h2>Add a song</h2>
+    <form>
+      <input type="text" id="in-track" placeholder="Track Name">
+      <input type="text" id="in-artist" placeholder="Artist">
+      <input type="date" id="in-date">
+      <input type="number" id="in-rank" min=1 max=999>
+      <button id="btn-add">Add</button>
+    </form>
+  </section>
+  <section>
+    <h2>All the songs</h2>
+    <table>
+      <thead><tr><th>Track</th><th>Artist</th><th>Published</th><th>Rank</th></tr></thead>
+      <tbody id="out-songs"></tbody>
+    </table>
+  </section>
+</body>
+</html>
