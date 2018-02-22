@@ -12,6 +12,7 @@ function musicCtl($http){
     // This will be populated by song objects by a successful $http GET from the database
     // It will be iterated through by ng-repeat in the view
     self.songsArray = []; 
+ 
 
     self.addSong = function(song){
         console.log(song);
@@ -53,6 +54,14 @@ function musicCtl($http){
             console.log('Error in self.deleteSong', error);
         }); // END $http
     }; // END self.deleteSong
+
+
+    self.editClick = function(song){
+        
+        song.beingEdited = true;
+        console.log(song);
+    }
+
 
 
     // ON PAGE LOAD...
