@@ -79,6 +79,7 @@ function musicCtl($http){
         }).then(function(response) {
             console.log(response);
             self.getSongs();
+            self.editedSong = {};
         }).catch(function(error) {
             console.log('ERROR IN submitEdit', error);
         }); // END $http
