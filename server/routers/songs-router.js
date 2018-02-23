@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 const bodyParser = require('body-parser');
 
 router.get('/', function(request, response){
-  const sqlText = 'SELECT * FROM songs';
+  const sqlText = 'SELECT * FROM songs ORDER BY id ASC LIMIT 50';
   pool.query(sqlText)
     // query was successful
     .then(function(result) {
@@ -54,18 +54,18 @@ router.delete('/:id', (request, response) => {
 // Update the rating of a specific song
 router.put('/:id', (request, response) => {
   const id = request.params.id;
-  const newRating = request.body.rating;
-  const sqlText = `UPDATE songs SET rank=$1 WHERE id=$2`;
-  pool.query(sqlText, [newRating, id])
+  const song = request.body;
+  const sqlText = `UPDATE songs SET rank=$1, track=$2, artist=$3, published=$4 WHERE id=$5`;
+  pool.query(sqlText, [song.rank, song.track, song.artist, song.published, id])
     .then((result) => {
-      console.log(`Updated song ${id} with rank ${newRating}`);
+      console.log(`Updated song`);
       response.sendStatus(200);
     })
     .catch( (error) => {
       console.log('Error on update song');
       response.sendStatus(500);
-    })
-})
+    }); 
+}); 
 
 router.post('/add', (request, response) => {
   const song = request.body.song;

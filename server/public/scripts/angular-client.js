@@ -9,20 +9,21 @@ function musicCtl($http){
 
     // This will be what is sent with $http POST
     self.newSong = {}; 
+    self.editedSong = {};
     // This will be populated by song objects by a successful $http GET from the database
     // It will be iterated through by ng-repeat in the view
     self.songsArray = []; 
  
-
     self.addSong = function(song){
         console.log(song);
-        
         $http({
             method: 'POST',
             url: '/songs/add',
             data: {song: song}
         }).then(function(response) {
+            console.log('it worked');
             self.getSongs()
+            self.newSong = {};
         }).catch(function(error) {
             console.log('ERROR IN POST songs/add', error);
         }); // END $http
@@ -44,23 +45,44 @@ function musicCtl($http){
     }; // END self.getSongs
 
     self.deleteSong = function(song) {
-        let id = song.id;
-        $http({
-            method: 'DELETE',
-            url: `songs/${id}`,
-        }).then(function(response) {
-            self.getSongs();
-        }).catch(function(error) {
-            console.log('Error in self.deleteSong', error);
-        }); // END $http
+        if(confirm('Are you sure you want to delete this song???')){
+            let id = song.id;
+            $http({
+                method: 'DELETE',
+                url: `songs/${id}`,
+            }).then(function (response) {
+                self.getSongs();
+            }).catch(function (error) {
+                console.log('Error in self.deleteSong', error);
+            }); // END $http
+        }
+       
     }; // END self.deleteSong
 
 
-    self.editClick = function(song){
-        
+    self.editThisRow = function(song){
         song.beingEdited = true;
         console.log(song);
-    }
+    }; // END editThisRow
+
+    self.cancelEdit = function(song) {
+        self.editedSong = {};
+        song.beingEdited = false;
+    }; // END cancelEdit
+
+    self.submitEdit = function(song, id) {
+        console.log(song);
+        $http({
+            method: 'PUT',
+            url: `/songs/${id}`,
+            data: song,
+        }).then(function(response) {
+            console.log(response);
+            self.getSongs();
+        }).catch(function(error) {
+            console.log('ERROR IN submitEdit', error);
+        }); // END $http
+    }; // END submitEdit
 
 
 

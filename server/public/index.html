@@ -57,15 +57,15 @@
                     <button class="btn btn-danger" ng-model="song" ng-click="vm.deleteSong(song)">Delete</button>
                   </td>
                   <td ng-hide="song.beingEdited">
-                    <button class="btn btn-info"  ng-click="vm.editClick(song)">Edit</button>
+                    <button class="btn btn-info"  ng-click="vm.editThisRow(song)">Edit</button>
                   </td>
 
-                  <td ng-show="song.beingEdited"> <input type="text" value="{{song.track}}"> </td>
-                  <td ng-show="song.beingEdited"> <input type="text" value="{{song.artist}}"> </td>
-                  <td ng-show="song.beingEdited"> <input type="date" value="{{song.published}}"> </td>
-                  <td ng-show="song.beingEdited"> <input type="number" value="{{song.rank | number}}"> </td>
-                  <td ng-show="song.beingEdited"> <button class="btn btn-primary" ng-model="vm.editedSong" ng-click="vm.submitEdit(vm.editedSong)">Submit</button></td>
-                  <td ng-show="song.beingEdited"> <button class="btn btn-dark" ng-model="vm.editedSong" ng-click="song.beingEdited = false">Cancel</button></td>
+                  <td ng-show="song.beingEdited"> <input type="text" value="{{song.track}}" ng-model="vm.editedSong.track"> </td>
+                  <td ng-show="song.beingEdited"> <input type="text" value="{{song.artist}}" ng-model="vm.editedSong.artist"> </td>
+                  <td ng-show="song.beingEdited"> <input type="date" value="{{song.published}}" ng-model="vm.editedSong.published"> </td>
+                  <td ng-show="song.beingEdited"> <input type="number" value="{{song.rank | number}}" ng-model="vm.editedSong.rank"> </td>
+                  <td ng-show="song.beingEdited"> <button class="btn btn-primary" ng-model="vm.editedSong" ng-click="vm.submitEdit(vm.editedSong, song.id)">Submit</button></td>
+                  <td ng-show="song.beingEdited"> <button class="btn btn-dark" ng-model="vm.editedSong" ng-click="vm.cancelEdit(song)">Cancel</button></td>
 
                 </tr>
 
