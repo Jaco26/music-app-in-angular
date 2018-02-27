@@ -1,4 +1,4 @@
-const app = angular.module('musicApp', []);
+const app = angular.module('musicApp', ['ngMaterial']);
 
 function formatDate(isoDateStr) {
     let result = ''

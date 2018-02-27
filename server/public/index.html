@@ -7,18 +7,18 @@
 
   <!-- Angular and Angular-Route -->
   <script src="vendors/angular.min.js"></script>
-  <script src="vendors/anglar-route.min.js"></script>
+  <script src="vendors/angular-route.min.js"></script>
 
   <!-- Angular Material -->
   <link rel="stylesheet" href="vendors/angular-material.css" type="text/css">
   <script src="vendors/angular-animate.min.js"></script>
   <script src="vendors/angular-aria.min.js"></script>
   <script src="vendors/angular-messages.min.js"></script>
-  <script src="vendors/anular-material.min.js"></script>
+  <script src="vendors/angular-material.min.js"></script>
 
   <!-- Client Side -->
   <script src="scripts/client.js"></script>
-  <script src="scripts/material.controller.js"></script>
+  <script src="scripts/music.controller.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles/style.css" type="text/css">
@@ -26,25 +26,32 @@
 
 </head>
 <body>
-
-  <h1>Songs!</h1>
   <main ng-controller="musicController as vm"> <!-- "vm" means "view model"...I think -->
-      <div class="container">
-        <input type="text" ng-model="test">
-        <p> {{test}} </p>
+      <div layout="row" layout-align="center"  class="container">
         <section>
-          <h2>Add a song</h2>
+          <h1>Add a song</h1>
           <form>
-            <input type="text" id="in-track" placeholder="Track Name" ng-model="vm.newSong.track">
-            <input type="text" id="in-artist" placeholder="Artist" ng-model="vm.newSong.artist">
-            <input type="date" id="in-date" ng-model="vm.newSong.published">
-            <input type="number" id="in-rank" min=1 max=999 ng-model="vm.newSong.rank">
-            <button ng-click="vm.addSong(vm.newSong)">Add</button>
+            <md-input-container>
+              <input type="text" id="in-track" placeholder="Track Name" ng-model="vm.newSong.track">
+            </md-input-container>
+            <md-input-container>
+              <input type="text" id="in-artist" placeholder="Artist" ng-model="vm.newSong.artist">
+            </md-input-container>
+            <md-input-container>
+              <input type="date" id="in-date" ng-model="vm.newSong.published">
+            </md-input-container>
+            <md-input-container>
+              <input type="number" id="in-rank" min=1 max=999 ng-model="vm.newSong.rank">
+            </md-input-container>
+            <md-input-container>
+              <md-button class="md-primary md-raised" ng-click="vm.addSong(vm.newSong)">Add</md-button>
+            </md-input-container>
           </form>
         </section>
+      </div>
+      <div layout="row" layout-align="center" class="container">
         <section>
           <h2>All the songs</h2>
-
           <table class="table">
             <thead>
               <tr>
@@ -62,18 +69,18 @@
                   <td ng-hide="song.beingEdited"> {{song.published}} </td>
                   <td ng-hide="song.beingEdited"> {{song.rank}} </td>
                   <td ng-hide="song.beingEdited">
-                    <button class="btn btn-danger" ng-model="song" ng-click="vm.deleteSong(song)">Delete</button>
+                    <md-button class="md-warn md-raised" ng-model="song" ng-click="vm.deleteSong(song)">Delete</md-button>
                   </td>
                   <td ng-hide="song.beingEdited">
-                    <button class="btn btn-info"  ng-click="vm.editThisRow(song)">Edit</button>
+                    <md-button class="md-raised"  ng-click="vm.editThisRow(song)">Edit</md-button>
                   </td>
 
                   <td ng-show="song.beingEdited"> <input type="text" value="{{song.track}}" ng-model="vm.editedSong.track"> </td>
                   <td ng-show="song.beingEdited"> <input type="text" value="{{song.artist}}" ng-model="vm.editedSong.artist"> </td>
                   <td ng-show="song.beingEdited"> <input type="date" value="{{song.published}}" ng-model="vm.editedSong.published"> </td>
                   <td ng-show="song.beingEdited"> <input type="number" value="{{song.rank | number}}" ng-model="vm.editedSong.rank"> </td>
-                  <td ng-show="song.beingEdited"> <button class="btn btn-primary" ng-model="vm.editedSong" ng-click="vm.submitEdit(vm.editedSong, song.id)">Submit</button></td>
-                  <td ng-show="song.beingEdited"> <button class="btn btn-dark" ng-model="vm.editedSong" ng-click="vm.cancelEdit(song)">Cancel</button></td>
+                  <td ng-show="song.beingEdited"> <md-button class="md-primary md-raised" ng-model="vm.editedSong" ng-click="vm.submitEdit(vm.editedSong, song.id)">Submit</md-button></td>
+                  <td ng-show="song.beingEdited"> <md-button class="md-raised" ng-model="vm.editedSong" ng-click="vm.cancelEdit(song)">Cancel</md-button></td>
 
                 </tr>
 
